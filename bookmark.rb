@@ -56,7 +56,7 @@ module Bookmarker
 
   def bookmark(hatena_id, comment, options = {})
     post_url = File.join BASE_URL, hatena_id, 'add.edit'
-    res = curl "-L -b #{COOKIE_FILE} -d rks=#{shellescape options[:rks]} -d url=#{shellescape options[:url]} -d from=#{shellescape options[:from]} -d comment=#{shellescape comment} #{post_url}"
+    res = curl "-L -b #{COOKIE_FILE} -d rks=#{shellescape options[:rks]} -d url=#{shellescape options[:url]} -d from=#{shellescape options[:from]} --data-urlencode comment=#{shellescape comment} #{post_url}"
     if res =~ /link.*rel="canonical".*href="(\S+?)"/
       $1
     else
