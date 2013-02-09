@@ -1,4 +1,4 @@
-#!env ruby
+#!/usr/bin/env ruby
 # coding: utf-8
 
 require 'irb'
@@ -46,7 +46,7 @@ module Bookmarker
     rks   = $1 if res =~ /name="rks".*value="(\S+?)"/
     url   = $1 if res =~ /name="url".*value="(\S+?)"/
     from  = $1 if res =~ /name="from".*value="(\S+?)"/
-    users = $1 if res =~ /(\d+)\s*users/
+    users = $1 if res =~ %r|<span>(\d+)</span>(?:\s*)users?|
 
     tags = res.scan(/class="tag".*?>(\S+?)</)
     tags.flatten!
